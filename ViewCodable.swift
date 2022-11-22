@@ -14,27 +14,12 @@ import UIKit
     Simply adopt this protocol, customize the methods which suit you best and call the main setup function.
 */
 protocol ViewCodable {
-    func setupUI()
-    func addHierarchy()
-    func addConstraints()
-    func additionalConfig()
-}
-
-extension ViewCodable {
-    func setupUI() {
-        addHierarchy()
-        addConstraints()
-        additionalConfig()
-    }
-}
-
-protocol ViewCodable {
-    
+   
     /*
         This function calls all other functions in the correct order.
         You can use it in an UIViewController viewDidLoad method or in a view initializer, for example.
     */
-    func setup()
+    func setupUI()
     
     //  This function should be used to add your custom views to the views hierarchy in correct order
     func addToHierarchy()
@@ -65,7 +50,7 @@ protocol ViewCodable {
 //MARK: - Default implementations
 extension ViewCodable {
     
-    func setup() {
+    func setupUI() {
         addToHierarchy()
         setupConstraints()
         setupStyles()
