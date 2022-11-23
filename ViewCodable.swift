@@ -1,6 +1,6 @@
 //
 //  ViewCodable.swift
-//  BattleScape
+//  ViewCodableWithPreview
 //
 //  Created by Lucas C Barros on 2022-10-16.
 //  Copyright © 2022 Lucas C Barros. All rights reserved.
@@ -14,7 +14,6 @@ import UIKit
     Simply adopt this protocol, customize the methods which suit you best and call the main setup function.
 */
 protocol ViewCodable {
-   
     /*
         This function calls all other functions in the correct order.
         You can use it in an UIViewController viewDidLoad method or in a view initializer, for example.
@@ -22,7 +21,7 @@ protocol ViewCodable {
     func setupUI()
     
     //  This function should be used to add your custom views to the views hierarchy in correct order
-    func addToHierarchy()
+    func setupHierarchy()
     
     // This function should be used to add constraints to your customs views
     func setupConstraints()
@@ -37,7 +36,7 @@ protocol ViewCodable {
         This function should be used to link actions to your customs views.
         For example, you could add a selector to a button or use reactive bindings here.
     */
-    func bindComponents()
+    func setupComponentBindings()
     
     /*
         This function should be used to assign accessibility idientifiers to your custom views.
@@ -51,18 +50,17 @@ protocol ViewCodable {
 extension ViewCodable {
     
     func setupUI() {
-        addToHierarchy()
+        setupHierarchy()
         setupConstraints()
         setupStyles()
-        bindComponents()
+        setupComponentBindings()
         setupAcessibilityIdentifiers()
     }
     
-    // Making some of the functions optional, since they might not apply to every context
-
+    // Optional functions, since they might not apply to every context
     func setupStyles() { }
     
-    func bindComponents() { }
+    func setupComponentBindings() { }
     
     func setupAcessibilityIdentifiers() { }
     
